@@ -402,10 +402,11 @@
     if (animated) return;
     animated = true;
     counters.forEach(el => {
-      const target = +el.dataset.target;
-      const suffix = el.dataset.suffix;
+      const target = +el.getAttribute('data-target');
+      const suffix = el.getAttribute('data-suffix') || '';
       const duration = 1400;
-      const step = target / (duration / 16);
+      const steps = duration / 16;
+      const step = target / steps;
       let current = 0;
       const tick = () => {
         current = Math.min(current + step, target);
